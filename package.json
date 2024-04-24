@@ -5,7 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "node server.js",
-    "tstest": "ts-node-dev --respawn server.ts"
+    "tstest": "ts-node-dev --respawn server.ts",
+    "start": "ts-node-dev server.ts",
+    "build": "tsc"
   },
   "keywords": [],
   "author": "",
