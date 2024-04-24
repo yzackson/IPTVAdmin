@@ -130,4 +130,6 @@ dist
 .pnp.*
 
 
-iptv*.json
+secret*.json
+
+.vscode
