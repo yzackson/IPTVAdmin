@@ -1,11 +1,9 @@
 import { initializeApp, applicationDefault, cert } from 'firebase-admin/app'
 import express from 'express'
 
-//const serviceAccount = require("./iptvadmin-68e78-firebase-adminsdk-jllen-1f2795e027.json")
-const serviceAccount = require("./models/apiFirebase")
-const k = serviceAccount();
+const serviceAccount = require("./secrete-key-firebase.json")
 initializeApp({
-  credential: cert(k)
+  credential: cert(serviceAccount)
 });
 
 import {TestConn} from './source/db'
