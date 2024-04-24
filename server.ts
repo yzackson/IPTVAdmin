@@ -7,15 +7,38 @@ initializeApp({
   credential: cert(serviceAccount)
 });
 
-import {TestConn} from './source/db'
+import {AddUpdateClient, GetClient, GetAllClient} from './source/dbFunctions'
 
 const app = express();
 const port = process.env.PORT;
 
 app.use(express.json())
 
-app.get('/NovoUsuario', (req, res) => {
-  res.send(TestConn(req.body))
+app.post('/NewUser', (req, res) => {
+  if(req.query.key as string == process.env.REQ_KEY){
+    AddUpdateClient(req.body);
+    res.send("Recebido")
+  } else {
+    res.send('Unauthorized')
+  }
+});
+
+app.get('/GetUser', async (req, res) => {
+  if(req.query.key as string == process.env.REQ_KEY){
+    let result = await GetClient(req.query.client as string);
+    res.send(result)
+  } else {
+    res.send('Unauthorized')
+  }
+});
+
+app.get('/GetAllUser', async (req, res) => {
+  if(req.query.key as string == process.env.REQ_KEY){
+    let result = await GetAllClient();
+    res.send(result)
+  } else {
+    res.send('Unauthorized')
+  }
 });
 
 app.listen(port, () => {
